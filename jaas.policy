@@ -1,0 +1,16 @@
+/** Java 2 Access Control Policy for Jaas**/
+
+/* grant the LoginModules permissions */
+grant codebase "file:./Client1LoginModule.jar" {
+    permission javax.security.auth.AuthPermission "modifyPrincipals";
+};
+
+grant codebase "file:./Client2LoginModule.jar" {
+    permission javax.security.auth.AuthPermission "modifyPrincipals";
+};
+
+grant codebase "file:./Jaas.jar" {
+
+   permission javax.security.auth.AuthPermission "createLoginContext.JaasLogin";
+   permission javax.security.auth.AuthPermission "doAsPrivileged";
+};

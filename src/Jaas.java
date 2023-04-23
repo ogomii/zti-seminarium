@@ -2,6 +2,7 @@ package src;
 
 import java.io.*;
 import java.util.*;
+import java.security.AccessControlException;
 import java.security.Principal;
 import java.security.PrivilegedAction;
 import javax.security.auth.*;
@@ -9,6 +10,7 @@ import javax.security.auth.callback.*;
 import javax.security.auth.login.*;
 import javax.security.auth.spi.*;
 import com.sun.security.auth.*;
+import src.actions.*;
 
 public class Jaas{
     public static void main(String[] args){
@@ -50,8 +52,25 @@ public class Jaas{
             System.out.println("Authentication failed 3 times, stopping application...");
             System.exit(-1);
         }
-
         System.out.println("Authentication successful!");
+
+        Subject mySubject = lc.getSubject();
+        Iterator principalIterator = mySubject.getPrincipals().iterator();
+        System.out.println("Authenticated user has the following Principals:");
+        while (principalIterator.hasNext()) {
+            Principal p = (Principal)principalIterator.next();
+            System.out.println("\t" + p.toString());
+        }
+
+        PrivilegedAction action = new ReadFilesAction();
+        try{
+            Subject.doAsPrivileged(mySubject, action, null);
+        } catch(AccessControlException ace){
+            System.out.println("Subject doesn't have access to ReadFilesAction!");
+            System.exit(-1);
+        }
+
+        System.exit(0);
     }
 }
 

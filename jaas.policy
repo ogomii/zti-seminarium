@@ -14,3 +14,8 @@ grant codebase "file:./Jaas.jar" {
    permission javax.security.auth.AuthPermission "createLoginContext.JaasLogin";
    permission javax.security.auth.AuthPermission "doAsPrivileged";
 };
+
+grant codebase "file:./ReadFilesAction.jar",
+    Principal com.sun.security.auth.UserPrincipal "testuser" {
+   permission java.io.FilePermission "foo.txt", "read";
+};

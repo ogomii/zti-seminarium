@@ -16,6 +16,6 @@ grant codebase "file:./Jaas.jar" {
 };
 
 grant codebase "file:./ReadFilesAction.jar",
-    Principal com.sun.security.auth.UserPrincipal "testuser" {
+    Principal com.sun.security.auth.UserPrincipal "testUser" {
    permission java.io.FilePermission "foo.txt", "read";
 };

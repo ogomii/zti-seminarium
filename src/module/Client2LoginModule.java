@@ -11,8 +11,9 @@ import com.sun.security.auth.UserPrincipal;
 
 public class Client2LoginModule implements LoginModule {
     
-    private static final String PASSWORD = "testpassword";
+    private static final String PASSWORD = "testPassword";
 
+    private String username;
     private Subject subject;
     private CallbackHandler callbackHandler;
     private Map<String, ?> sharedState;
@@ -33,6 +34,7 @@ public class Client2LoginModule implements LoginModule {
     @Override
     public boolean login() throws LoginException {
         PasswordCallback passwordCallback = new PasswordCallback("password: ", false);
+        username = "unknownUser";
 
         try {
             callbackHandler.handle(new Callback[]{passwordCallback});
@@ -52,7 +54,7 @@ public class Client2LoginModule implements LoginModule {
         if (!loginSucceeded) {
             return false;
         }
-        userPrincipal = new UserPrincipal("testuser");
+        userPrincipal = new UserPrincipal(username);
         if (!subject.getPrincipals().contains(userPrincipal))
             subject.getPrincipals().add(userPrincipal);
         return true;

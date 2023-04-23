@@ -11,8 +11,8 @@ import com.sun.security.auth.UserPrincipal;
 
 public class Client1LoginModule implements LoginModule {
     
-    private static final String USERNAME = "testuser";
-    private static final String PASSWORD = "testpassword";
+    private static final String USERNAME = "testUser";
+    private static final String PASSWORD = "testPassword";
 
     private Subject subject;
     private CallbackHandler callbackHandler;

@@ -22,7 +22,7 @@ public class Jaas{
         authentiacteUser();
         mySubject = lc.getSubject();
         printUserPricipals();
-        execureReadFilesAction();
+        executeReadFilesAction();
 
         System.exit(0);
     }
@@ -69,7 +69,7 @@ public class Jaas{
         }
     }
 
-    private static void execureReadFilesAction(){
+    private static void executeReadFilesAction(){
         PrivilegedAction action = new ReadFilesAction();
         try{
             Subject.doAsPrivileged(mySubject, action, null);

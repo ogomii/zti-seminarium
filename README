@@ -1,0 +1,10 @@
+Wmyagana jest wersja javy co najmniej 1.4
+
+Dla systemu windows do zbudowania aplikacji wystarczy uruchomić cmd.exe w folderze w którym wypakowano jaas.zip
+Dla innych systemów, można skopiować komendy w build.bat, wkleić do terminala i uruchomić
+
+Po zbudowaniu plików .jar (powinno być ich 4), program można uruchomić na dwa sposoby, zależnie do klienta:
+dla klienta 1:
+java -classpath Jaas.jar;Client1LoginModule.jar;ReadFilesAction.jar -Djava.security.manager -Djava.security.policy==jaas.policy -Djava.security.auth.login.config==Client1.config src.Jaas
+dla klienta 2:
+java -classpath Jaas.jar;Client2LoginModule.jar;ReadFilesAction.jar -Djava.security.manager -Djava.security.policy==jaas.policy -Djava.security.auth.login.config==Client2.config src.Jaas
